@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="https://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script type="text/javascript" src="https://cdn.hcharts.cn/highstock/highstock.js"></script>
+    <script type="text/javascript" src="https://cdn.hcharts.cn/highmaps/highmaps.js"></script>
+</head>
+<body>
+<div  th:id="container" >
+</div>
+<script type="text/javascript">
+
+    var month_4 = [[${users.month_4}]];
+
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: '注册用户统计'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: '4月份',
+                y: [[${users.month_4}]],
+                sliced: true,
+                selected: true
+            }, {
+                name: '5月份',
+                y: [[${users.month_5}]]
+            }, {
+                name: '6月份',
+                y: [[${users.month_6}]]
+            }, {
+                name: '7月份',
+                y: [[${users.month_7}]]
+            }, {
+                name: '8月份',
+                y: [[${users.month_8}]]
+            }, {
+                name: '9月份',
+                y: [[${users.month_9}]]
+            }]
+        }]
+    });
+
+</script>
+</body>
+</html>
