@@ -36,9 +36,10 @@ public class TestController {
 
     @RequestMapping(value="user/countUserCreateTimeByMonth",method = RequestMethod.GET)
     public ModelAndView findUser(ModelAndView model) throws Exception {
-        JSONObject record = userService.countUserCreateTimeByMonth();
-        System.out.println("=============================================================");
-        System.out.println(record);
+        //JSONObject record = userService.countUserCreateTimeByMonth();
+
+        String  recordStr = "{\"month_4\":2,\"month_6\":1,\"month_5\":4,\"month_8\":1,\"month_7\":2,\"month_9\":1}";
+        JSONObject record = JSONObject.parseObject(recordStr);
 
         model.addObject("users", record);
         model.setViewName("user");
